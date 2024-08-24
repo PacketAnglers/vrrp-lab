@@ -1,0 +1,57 @@
+! The checkpoint file saved at Fri Aug 23 21:03:06 2024 by admin
+! device: LEAF2 (cEOSLab, EOS-4.31.4M-37710335.4314M (engineering build))
+!
+no aaa root
+!
+username admin privilege 15 role network-admin secret sha512 $6$Y9DeR/aoobzYFxXr$5BItfi3o9jBPJno1YgKtEjRDcbtIQWLvmA1jIpxlOU3Y9E5v.dqYaCkCVg76jCONCqONlwWAnJ7patTM6uy4X1
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model multi-agent
+!
+hostname LEAF2
+!
+spanning-tree mode mstp
+!
+system l1
+   unsupported speed action error
+   unsupported error-correction action error
+!
+vrf instance MGMT
+!
+management api http-commands
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+!
+management api gnmi
+   transport grpc default
+      vrf MGMT
+!
+management api netconf
+   transport ssh default
+      vrf MGMT
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+interface Ethernet3
+!
+interface Ethernet4
+!
+interface Ethernet5
+!
+interface Ethernet6
+!
+interface Management0
+   vrf MGMT
+   ip address 172.100.100.104/24
+!
+no ip routing
+no ip routing vrf MGMT
+!
+ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+!
+end

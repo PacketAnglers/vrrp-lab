@@ -1,0 +1,702 @@
+{
+  "name": "vrrp-testing",
+  "type": "clab",
+  "clab": {
+    "config": {
+      "prefix": "",
+      "mgmt": {
+        "network": "mgmt",
+        "bridge": "br-273d7ffb7713",
+        "ipv4-subnet": "172.100.100.0/24",
+        "ipv4-gw": "172.100.100.1",
+        "external-access": true
+      }
+    }
+  },
+  "nodes": {
+    "HostA1": {
+      "index": "0",
+      "shortname": "HostA1",
+      "longname": "HostA1",
+      "fqdn": "HostA1.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/HostA1",
+      "kind": "linux",
+      "image": "mitchv85/devhost",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.100.100.201",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/HostA1",
+        "clab-node-name": "HostA1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22201,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22201,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "HostA2": {
+      "index": "1",
+      "shortname": "HostA2",
+      "longname": "HostA2",
+      "fqdn": "HostA2.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/HostA2",
+      "kind": "linux",
+      "image": "mitchv85/devhost",
+      "mgmt-net": "",
+      "mgmt-intf": "",
+      "mgmt-ipv4-address": "172.100.100.202",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "linux",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/HostA2",
+        "clab-node-name": "HostA2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22202,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22202,
+          "port": 22,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "LEAF1": {
+      "index": "2",
+      "shortname": "LEAF1",
+      "longname": "LEAF1",
+      "fqdn": "LEAF1.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/LEAF1",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.103",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:d8:ad:e5",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/LEAF1",
+        "clab-node-name": "LEAF1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22003,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22003,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44303,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44303,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8003,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8003,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "LEAF2": {
+      "index": "3",
+      "shortname": "LEAF2",
+      "longname": "LEAF2",
+      "fqdn": "LEAF2.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/LEAF2",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.104",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:6b:8d:93",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/LEAF2",
+        "clab-node-name": "LEAF2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22004,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22004,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44304,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44304,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8004,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8004,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "R1": {
+      "index": "4",
+      "shortname": "R1",
+      "longname": "R1",
+      "fqdn": "R1.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/R1",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.105",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:b6:fe:58",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/R1",
+        "clab-node-name": "R1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22005,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22005,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44305,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44305,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8005,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8005,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "R2": {
+      "index": "5",
+      "shortname": "R2",
+      "longname": "R2",
+      "fqdn": "R2.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/R2",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.106",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:2c:17:51",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/R2",
+        "clab-node-name": "R2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22006,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22006,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44306,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44306,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8006,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8006,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "SPINE1": {
+      "index": "6",
+      "shortname": "SPINE1",
+      "longname": "SPINE1",
+      "fqdn": "SPINE1.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/SPINE1",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.101",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:d5:73:a6",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/SPINE1",
+        "clab-node-name": "SPINE1",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22001,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22001,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44301,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44301,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8001,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8001,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    },
+    "SPINE2": {
+      "index": "7",
+      "shortname": "SPINE2",
+      "longname": "SPINE2",
+      "fqdn": "SPINE2.vrrp-testing.io",
+      "group": "",
+      "labdir": "/home/mitch/vrrp-test/clab-vrrp-testing/SPINE2",
+      "kind": "ceos",
+      "image": "ceos:4.31.4M",
+      "mgmt-net": "",
+      "mgmt-intf": "Management0",
+      "mgmt-ipv4-address": "172.100.100.102",
+      "mgmt-ipv4-prefix-length": 24,
+      "mgmt-ipv6-address": "",
+      "mgmt-ipv6-prefix-length": 0,
+      "mac-address": "00:1c:73:ad:e7:c1",
+      "labels": {
+        "clab-mgmt-net-bridge": "br-273d7ffb7713",
+        "clab-node-group": "",
+        "clab-node-kind": "ceos",
+        "clab-node-lab-dir": "/home/mitch/vrrp-test/clab-vrrp-testing/SPINE2",
+        "clab-node-name": "SPINE2",
+        "clab-node-type": "",
+        "clab-topo-file": "/home/mitch/vrrp-test/lab.yml",
+        "containerlab": "vrrp-testing"
+      },
+      "port-bindings": [
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 22002,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 22002,
+          "port": 22,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 44302,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 44302,
+          "port": 443,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "0.0.0.0",
+          "host-port": 8002,
+          "port": 80,
+          "protocol": "tcp"
+        },
+        {
+          "host-ip": "::",
+          "host-port": 8002,
+          "port": 80,
+          "protocol": "tcp"
+        }
+      ]
+    }
+  },
+  "links": [
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et1",
+        "mac": "aa:c1:ab:e1:ab:d0",
+        "peer": "z"
+      },
+      "z": {
+        "node": "R1",
+        "interface": "et1",
+        "mac": "aa:c1:ab:e8:c6:fe",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et2",
+        "mac": "aa:c1:ab:f4:57:8d",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF1",
+        "interface": "et1",
+        "mac": "aa:c1:ab:54:f6:b4",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et3",
+        "mac": "aa:c1:ab:c7:1f:7c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF2",
+        "interface": "et1",
+        "mac": "aa:c1:ab:b7:ec:62",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et4",
+        "mac": "aa:c1:ab:b9:97:0a",
+        "peer": "z"
+      },
+      "z": {
+        "node": "R2",
+        "interface": "et1",
+        "mac": "aa:c1:ab:7f:0e:35",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE2",
+        "interface": "et1",
+        "mac": "aa:c1:ab:65:19:e2",
+        "peer": "z"
+      },
+      "z": {
+        "node": "R1",
+        "interface": "et2",
+        "mac": "aa:c1:ab:ec:5b:7a",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE2",
+        "interface": "et2",
+        "mac": "aa:c1:ab:be:75:21",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF1",
+        "interface": "et2",
+        "mac": "aa:c1:ab:57:d0:12",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE2",
+        "interface": "et3",
+        "mac": "aa:c1:ab:16:02:06",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF2",
+        "interface": "et2",
+        "mac": "aa:c1:ab:43:ee:c4",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE2",
+        "interface": "et4",
+        "mac": "aa:c1:ab:c2:c1:77",
+        "peer": "z"
+      },
+      "z": {
+        "node": "R2",
+        "interface": "et2",
+        "mac": "aa:c1:ab:ff:af:8f",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et5",
+        "mac": "aa:c1:ab:d8:82:16",
+        "peer": "z"
+      },
+      "z": {
+        "node": "SPINE2",
+        "interface": "et5",
+        "mac": "aa:c1:ab:19:8d:2d",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "SPINE1",
+        "interface": "et6",
+        "mac": "aa:c1:ab:b5:f9:47",
+        "peer": "z"
+      },
+      "z": {
+        "node": "SPINE2",
+        "interface": "et6",
+        "mac": "aa:c1:ab:97:b5:d2",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "LEAF1",
+        "interface": "et5",
+        "mac": "aa:c1:ab:b1:6d:d6",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF2",
+        "interface": "et5",
+        "mac": "aa:c1:ab:5b:eb:97",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "LEAF1",
+        "interface": "et6",
+        "mac": "aa:c1:ab:d3:b1:d3",
+        "peer": "z"
+      },
+      "z": {
+        "node": "LEAF2",
+        "interface": "et6",
+        "mac": "aa:c1:ab:55:de:ee",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "LEAF1",
+        "interface": "et3",
+        "mac": "aa:c1:ab:07:d7:af",
+        "peer": "z"
+      },
+      "z": {
+        "node": "HostA1",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:42:91:56",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "LEAF2",
+        "interface": "et3",
+        "mac": "aa:c1:ab:41:14:b5",
+        "peer": "z"
+      },
+      "z": {
+        "node": "HostA1",
+        "interface": "eth2",
+        "mac": "aa:c1:ab:e4:a2:7b",
+        "peer": "a"
+      }
+    },
+    {
+      "a": {
+        "node": "LEAF2",
+        "interface": "et4",
+        "mac": "aa:c1:ab:5b:4a:3c",
+        "peer": "z"
+      },
+      "z": {
+        "node": "HostA2",
+        "interface": "eth1",
+        "mac": "aa:c1:ab:c9:6e:28",
+        "peer": "a"
+      }
+    }
+  ]
+}

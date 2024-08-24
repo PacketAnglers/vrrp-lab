@@ -1,0 +1,127 @@
+---
+
+# --------------------------------------------------------------
+# VRRP Testing
+# --------------------------------------------------------------
+
+name: vrrp-testing
+
+prefix: ""
+
+mgmt:
+  network: mgmt
+  ipv4-subnet: 172.100.100.0/24
+
+topology:
+
+  defaults:
+    env:
+      INTFTYPE: et
+
+  kinds:
+    ceos:
+      env:
+        CLAB_MGMT_VRF: MGMT
+      image: ceos:4.31.4M
+      memory: 4g
+    linux:
+      image: mitchv85/devhost
+
+  nodes:
+
+
+##########################
+# THE LAB    #
+##########################
+
+    SPINE1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.101
+      # startup-config: ../configs/A-SPINE1.cfg
+      ports:
+        - '22001:22'
+        - '8001:80'
+        - '44301:443'
+
+    SPINE2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.102
+      # startup-config: ../configs/A-SPINE2.cfg
+      ports:
+        - '22002:22'
+        - '8002:80'
+        - '44302:443'
+
+    LEAF1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.103
+      # startup-config: ../configs/A-POD1-L1.cfg
+      ports:
+        - '22003:22'
+        - '8003:80'
+        - '44303:443'
+
+    LEAF2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.104
+      # startup-config: ../configs/A-POD1-L2.cfg
+      ports:
+        - '22004:22'
+        - '8004:80'
+        - '44304:443'
+
+    R1:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.105
+      # startup-config: ../configs/A-POD2-L1.cfg
+      ports:
+        - '22005:22'
+        - '8005:80'
+        - '44305:443'
+
+    R2:
+      kind: ceos
+      mgmt-ipv4: 172.100.100.106
+      # startup-config: ../configs/A-POD2-L1.cfg
+      ports:
+        - '22006:22'
+        - '8006:80'
+        - '44306:443'
+
+    HostA1:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.201
+      ports:
+        - '22201:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -b -i4 10.10.10.101/24 -i6 2001:db8:10:10::101/64 -g 10.10.10.1
+
+    HostA2:
+      kind: linux
+      image: mitchv85/devhost
+      mgmt-ipv4: 172.100.100.202
+      ports:
+        - '22202:22'
+      exec:
+        - bash /usr/local/bin/hostnetconfig.sh -i4 10.20.20.101/24 -i6 2001:db8:20:20::101/64 -g 10.20.20.1
+
+  links:
+######################
+# A-POD1             #
+######################
+    - endpoints: ["SPINE1:et1", "R1:et1"]
+    - endpoints: ["SPINE1:et2", "LEAF1:et1"]
+    - endpoints: ["SPINE1:et3", "LEAF2:et1"]
+    - endpoints: ["SPINE1:et4", "R2:et1"]
+    - endpoints: ["SPINE2:et1", "R1:et2"]
+    - endpoints: ["SPINE2:et2", "LEAF1:et2"]
+    - endpoints: ["SPINE2:et3", "LEAF2:et2"]
+    - endpoints: ["SPINE2:et4", "R2:et2"]
+    - endpoints: ["SPINE1:et5", "SPINE2:et5"]
+    - endpoints: ["SPINE1:et6", "SPINE2:et6"]
+    - endpoints: ["LEAF1:et5", "LEAF2:et5"]
+    - endpoints: ["LEAF1:et6", "LEAF2:et6"]
+    - endpoints: ["LEAF1:et3", "HostA1:eth1"]
+    - endpoints: ["LEAF2:et3", "HostA1:eth2"]
+    - endpoints: ["LEAF2:et4", "HostA2:eth1"]

@@ -1,0 +1,36 @@
+---
+all:
+  children:
+    eos:
+      children:
+        lab:
+          hosts:
+###############################################################
+###############################################################
+#                     DOMAIN "A"                         #
+###############################################################
+###############################################################
+            SPINE1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22001
+              ansible_httpapi_port: 44301
+            SPINE2:
+              ansible_host: 127.0.0.1
+              ansible_port: 22002
+              ansible_httpapi_port: 44302
+            LEAF1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22003
+              ansible_httpapi_port: 44303
+            LEAF2:
+              ansible_host: 127.0.0.1
+              ansible_port: 22004
+              ansible_httpapi_port: 44304
+            R1:
+              ansible_host: 127.0.0.1
+              ansible_port: 22005
+              ansible_httpapi_port: 44305
+            R2:
+              ansible_host: 127.0.0.1
+              ansible_port: 22006
+              ansible_httpapi_port: 44306
